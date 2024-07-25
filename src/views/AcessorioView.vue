@@ -8,7 +8,7 @@ const acessorios = ref([]);
 const acessorio = reactive({ ...defaultAcessorio });
 
 onMounted(async () => {
-  acessorios.value = await acessoriosApi.buscarTodasAsAcessorios();
+  acessorios.value = await acessoriosApi.buscarTodosOsAcessorios();
 });
 
 function limpar() {
@@ -21,7 +21,7 @@ async function salvar() {
   } else {
     await acessoriosApi.adicionarAcessorio(acessorio);
   }
-  acessorios.value = await acessoriosApi.buscarTodasAsAcessorios();
+  acessorios.value = await acessoriosApi.buscarTodosOsAcessorios();
   limpar();
 }
 
@@ -31,14 +31,13 @@ function editar(acessorio_para_editar) {
 
 async function excluir(id) {
   await acessoriosApi.excluirAcessorio(id);
-  acessorios.value = await acessoriosApi.buscarTodasAsAcessorios();
+  acessorios.value = await acessoriosApi.buscarTodosOsAcessorios();
   limpar();
 }
 </script>
 
 <template>
-  <h1>Acessorio</h1>
-  <hr />
+  <h1>Acessório</h1>
   <div class="form">
     <input type="text" v-model="acessorio.descricao" placeholder="Descrição" />
     <button @click="salvar">Salvar</button>
